@@ -1,0 +1,22 @@
+{
+  "name": "discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "discord-buttons": "^4.0.0-deprecated",
+    "discord.js": "^14.15.2",
+    "electron": "^30.0.6",
+    "electron-oauth2": "^3.0.0",
+    "express": "^4.19.2",
+    "mysql2": "^3.9.7",
+    "ws": "^8.17.0"
+  }
+}
