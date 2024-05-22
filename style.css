@@ -328,4 +328,70 @@ main.min-main{
     }
     
 }
+/* ... tu CSS existente ... */
 
+.oculto {
+    display: none;
+}
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.barra-lateral .navegacion a.active {
+    background-color: var(--color-menu-hover);
+    color: var(--color-menu-hover-texto);
+}
+
+main > section {
+    display: none; /* Ocultar todas las secciones por defecto */
+}
+
+main > section:not(.oculto) {
+    display: block; /* Mostrar solo la sección que no tiene la clase .oculto */
+}
+
+#commandList {
+    list-style: none;
+    padding: 0;
+}
+
+.command-item {
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background-color 0.3s;
+}
+
+.command-item:hover {
+    background-color: #e0e0e0;
+}
+
+.stats-item {
+    background-color: #f0f0f0;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.stats-item strong {
+    margin-right: 10px;
+}
+
+.stats-item:hover {
+    background-color: #e0e0e0;
+}

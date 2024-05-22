@@ -13,10 +13,14 @@
     "axios": "^1.7.2",
     "discord-buttons": "^4.0.0-deprecated",
     "discord.js": "^14.15.2",
+    "dotenv": "^16.4.5",
     "electron": "^30.0.6",
     "electron-oauth2": "^3.0.0",
     "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "mysql": "^2.18.1",
     "mysql2": "^3.9.7",
+    "pg": "^8.11.5",
     "ws": "^8.17.0"
   }
 }

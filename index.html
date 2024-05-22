@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar</title>
+    <title>Pàgina administració</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -19,53 +19,53 @@
                 <span>uriBot</span>
             </div>
             <button class="boton">
-                <ion-icon name="add-outline"></ion-icon>
-                <span>Servidor</span>
+                <ion-icon name="browsers"></ion-icon>
+                <span>Bots Discord</span>
             </button>
         </div>
 
         <nav class="navegacion">
             <ul>
                 <li>
-                    <a id="inbox" href="#">
+                    <a id="inici" href="#" class="active">
                         <ion-icon name="mail-unread-outline"></ion-icon>
                         <span>Inici</span>
                     </a>
                 </li>
                 <li>
-                    <a id="administracio" href="#">
-                        <ion-icon name="star-outline"></ion-icon>
-                        <span>Administració</span>
+                    <a id="comandaments" href="#">
+                        <ion-icon name="code-working"></ion-icon>
+                        <span>Comandaments</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
-                        <ion-icon name="paper-plane-outline"></ion-icon>
-                        <span>Sent</span>
+                    <a id="usuaris" href="#">
+                        <ion-icon name="people"></ion-icon>
+                        <span>Usuaris</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="registres" href="#">
                         <ion-icon name="document-text-outline"></ion-icon>
-                        <span>Drafts</span>
+                        <span>Registres</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="logs-partides" href="#">
                         <ion-icon name="bookmark-outline"></ion-icon>
-                        <span>Important</span>
+                        <span>Logs partides</span>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a id="estadistiques" href="#">
+                        <ion-icon name="podium"></ion-icon>
+                        <span>Estadístiques</span>
+                    </a>
+                </li>
+                <li>
+                    <a id="info" href="#">
                         <ion-icon name="alert-circle-outline"></ion-icon>
-                        <span>Spam</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <ion-icon name="trash-outline"></ion-icon>
-                        <span>Trash</span>
+                        <span>Informació</span>
                     </a>
                 </li>
             </ul>
@@ -81,36 +81,61 @@
                 </div>
                 <div class="switch">
                     <div class="base">
-                        <div class="circulo">
-                            
-                        </div>
+                        <div class="circulo"></div>
                     </div>
                 </div>
             </div>
-    
+
             <div class="usuario">
                 <img src="user.png" alt="">
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        <span class="nombre">Oriol Balagué</span>
+                        <span class="nombre">itzorii</span>
                         <span class="email">15586216.clot@fje.edu</span>
                     </div>
                     <ion-icon name="ellipsis-vertical-outline"></ion-icon>
                 </div>
             </div>
         </div>
-
     </div>
 
-
-    <main id="">
-        <h1>Benvinguts</h1>
-        <p>Benvinguts a l'eina d'administració del bot uriBot</p>
+    <main>
+        <section id="inici-section">
+            <div class="centered-content">
+                <h1>Benvinguts</h1>
+                <p>Benvinguts a l'eina d'administració del bot uriBot</p>
+            </div>
+        </section>
+        <section id="comandaments-section" class="oculto">
+            <h2>Comandes</h2>
+            <ul id="commandList"></ul>
+        </section>
+        <section id="usuaris-section" class="oculto">
+            <h2>Usuaris</h2>
+            <button id="fetchUsersButton">Fetch Users</button>
+            <ul id="userList"></ul>
+        </section>
+        <section id="registres-section" class="oculto">
+            <h2>Registres</h2>
+            <!-- Contenido de Registres -->
+        </section>
+        <section id="logs-partides-section" class="oculto">
+            <h2>Logs partides</h2>
+            <!-- Contenido de Logs partides -->
+        </section>
+        <section id="estadistiques-section" class="oculto">
+            <h2>Estadístiques</h2>
+            <!-- Contenido de Estadístiques -->
+        </section>
+        <section id="info-section" class="oculto">
+            <h2>Informació</h2>
+            <!-- Contenido de Estadístiques -->
+        </section>
     </main>
-
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="renderer.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
