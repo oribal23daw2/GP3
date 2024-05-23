@@ -93,20 +93,6 @@ ipcMain.handle('get-commands', async () => {
     return jsFiles;
 });
 
-// Maneja la solicitud para renombrar un archivo de comando
-ipcMain.handle('rename-command', async (event, oldName, newName) => {
-    const commandsPath = path.join(__dirname, 'comandaments');
-    const oldPath = path.join(commandsPath, oldName);
-    const newPath = path.join(commandsPath, newName);
-    try {
-        await fs.promises.rename(oldPath, newPath);
-        return { success: true };
-    } catch (error) {
-        console.error('Error renaming file:', error);
-        return { success: false, error: error.message };
-    }
-});
-
 // Maneja la solicitud para obtener los registros de partidas
 ipcMain.handle('get-logs-partides', async () => {
     return new Promise((resolve, reject) => {
