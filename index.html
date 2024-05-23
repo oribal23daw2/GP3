@@ -39,18 +39,6 @@
                     </a>
                 </li>
                 <li>
-                    <a id="usuaris" href="#">
-                        <ion-icon name="people"></ion-icon>
-                        <span>Usuaris</span>
-                    </a>
-                </li>
-                <li>
-                    <a id="registres" href="#">
-                        <ion-icon name="document-text-outline"></ion-icon>
-                        <span>Registres</span>
-                    </a>
-                </li>
-                <li>
                     <a id="logs-partides" href="#">
                         <ion-icon name="bookmark-outline"></ion-icon>
                         <span>Logs partides</span>
@@ -70,6 +58,7 @@
                 </li>
             </ul>
         </nav>
+        
 
         <div>
             <div class="linea"></div>
@@ -110,26 +99,50 @@
             <h2>Comandes</h2>
             <ul id="commandList"></ul>
         </section>
-        <section id="usuaris-section" class="oculto">
-            <h2>Usuaris</h2>
-            <button id="fetchUsersButton">Fetch Users</button>
-            <ul id="userList"></ul>
-        </section>
-        <section id="registres-section" class="oculto">
-            <h2>Registres</h2>
-            <!-- Contenido de Registres -->
-        </section>
         <section id="logs-partides-section" class="oculto">
             <h2>Logs partides</h2>
-            <!-- Contenido de Logs partides -->
+            <div id="logsContainer"></div>
         </section>
         <section id="estadistiques-section" class="oculto">
             <h2>Estadístiques</h2>
-            <!-- Contenido de Estadístiques -->
+            <div id="statsContainer"></div>
         </section>
         <section id="info-section" class="oculto">
-            <h2>Informació</h2>
-            <!-- Contenido de Estadístiques -->
+            <h2>Informació</h2><br>
+            <div class="info-content">
+                <h3>Sobre el Bot</h3>
+                <p>
+                    Benvinguts a l'eina d'administració del bot <strong>uriBot</strong>. Aquest bot ha estat desenvolupat com a part del projecte integral del curs de Desenvolupament d'Aplicacions Web (DAW) durant el curs 2023-2024. 
+                    La iniciativa es centra en l'ús de tecnologies avançades com Node.js i altres per proporcionar una interfície interactiva i útil per a la gestió de servidors de Discord.
+                </p>
+        
+                <h3>Funcionalitats Principals</h3>
+                <ul>
+                    <li><strong>Gestió de Comandes:</strong> Permet gestionar i executar diverses comandes personalitzades per a facilitar la moderació i interacció dins del servidor.</li>
+                    <li><strong>Registres de Partides:</strong> Registra i mostra les estadístiques i resultats de les partides jugades pels usuaris.</li>
+                    <li><strong>Estadístiques dels Jugadors:</strong> Proporciona una visió detallada de les estadístiques dels jugadors, incloent-hi jocs jugats, jocs guanyats, jocs perduts, lletres correctes i incorrectes.</li>
+                    <li><strong>Benvinguda Automàtica:</strong> Envia un missatge de benvinguda automàtic als nous membres del servidor.</li>
+                </ul>
+        
+                <h3>Contacte</h3>
+                <p>
+                    Per qualsevol pregunta o suggeriment, podeu contactar amb els creadors del bot:
+                </p>
+                <ul>
+                    <li><strong>Oriol Balagué:</strong> <a href="https://github.com/oribal23daw2" target="_blank">GitHub</a></li>
+                </ul>
+        
+                <h3>Tecnologies Utilitzades</h3>
+                <ul>
+                    <li><strong>Node.js:</strong> Plataforma per a la construcció del backend del bot.</li>
+                    <li><strong>Discord.js:</strong> Llibreria per a interactuar amb l'API de Discord i crear el bot.</li>
+                    <li><strong>Electron.js:</strong> Framework per a crear aplicacions d'escriptori multi-plataforma amb JavaScript, HTML i CSS.</li>
+                    <li><strong>MySQL:</strong> Base de dades per a emmagatzemar les estadístiques i registres dels jugadors.</li>
+                    <li><strong>Altres...</strong></li>
+
+                </ul>
+        
+            </div>
         </section>
     </main>
 

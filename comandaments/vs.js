@@ -74,16 +74,14 @@ const temas = {
     ]
 };
 
-const db = require('../db');
-
-const dibujosAhorcado = [
-    '```  \n  \n  \n  \n  \n__```',
-    '```  \n  \n  \n  \n  \n__\n|```',
-    '```  \n  \n  \n  \n|\n__\n|```',
-    '```  \n  \n  \n|\n|\n__\n|```',
-    '```  \n  \n|\n|\n|\n__\n|```',
-    '```  \n|\n|\n|\n|\n__\n|```',
-    '```__\n|\n|\n|\n|\n__\n|```'
+const imagenesAhorcado = [
+    'https://cdn.discordapp.com/attachments/756615207383728218/1242861154888450128/Ahorcado_1.png?ex=664f6026&is=664e0ea6&hm=b54b6147f2d8642b7915384065398cdff328edeabddd1f5391f59d89d7c789e5&',
+    'https://media.discordapp.net/attachments/756615207383728218/1242784447984697364/Ahorcado_5.png?ex=664f18b6&is=664dc736&hm=9bf66123860afc5d43d78f3fa0fa1284751fb1411ca24a5f0d7d6c5998fb51e1&=&format=webp&quality=lossless',
+    'https://media.discordapp.net/attachments/756615207383728218/1242784447070339102/Ahorcado_4.png?ex=664f18b6&is=664dc736&hm=bd1dc73b1a52f93229974e312b726d4672ef5ab3f09d78d30c7136d958592537&=&format=webp&quality=lossless',
+    'https://media.discordapp.net/attachments/756615207383728218/1242784450400616479/Ahorcado_3.png?ex=664f18b6&is=664dc736&hm=89ed01a7a69df20aedea8583eb4a4f641183d5899c097b756603086d1a2908b8&=&format=webp&quality=lossless',
+    'https://media.discordapp.net/attachments/756615207383728218/1242784449968472104/Ahorcado_2.png?ex=664f18b6&is=664dc736&hm=0cecd36a3409292ac0b14b7984bb2d999510d08e8fd9f74d27c5d5cc22440dde&=&format=webp&quality=lossless',
+    'https://media.discordapp.net/attachments/756615207383728218/1242784449465421874/Ahorcado_1.png?ex=664f18b6&is=664dc736&hm=2617e83f3d49585181f2b33edde61a42e51a899c37d2cae4c9596aca25d41698&=&format=webp&quality=lossless',
+    'https://media.discordapp.net/attachments/756615207383728218/1242785015226433546/Ahorcado.png?ex=664f193d&is=664dc7bd&hm=04522a3760d7dbcd32c9fb61de5433919563df2e6a80ec4171c603f0756529e2&=&format=webp&quality=lossless'
 ];
 
 module.exports = {
@@ -241,9 +239,9 @@ async function iniciarPartida(message, jugadorRetado, tema) {
         .setColor('Blurple')
         .setTitle('🎮 Joc del penjat')
         .setDescription(`Tema: ${tema}\n\nParaula: \`${palabraMostrada.join(' ')}\`\n\nIntents restants: ${intentos}`)
+        .setImage(imagenesAhorcado[intentos])
         .addFields(
-            { name: 'Lletres intentades', value: 'Cap lletra intentada encara.' },
-            { name: 'Penjat', value: dibujosAhorcado[intentos] }
+            { name: 'Lletres intentades', value: 'Cap lletra intentada encara.' }
         );
 
     const mensajeJuego = await message.reply({ embeds: [embed] });
@@ -279,7 +277,7 @@ async function iniciarPartida(message, jugadorRetado, tema) {
             intentos--;
             // Incrementar letras incorrectas
             connection.query(
-                'UPDATE estadisticas_jugador SET incorrect_letters = incorrect_letters + 1 WHERE user_id = ?',
+                'UPDATE estadisticas_jugador SET incorrect_letters = correct_letters + 1 WHERE user_id = ?',
                 [response.author.id],
                 (err) => {
                     if (err) {
@@ -291,6 +289,7 @@ async function iniciarPartida(message, jugadorRetado, tema) {
 
         if (palabraMostrada.join('') === palabra) {
             embed.setDescription(`Tema: ${tema}\n\nParaula: \`${palabraMostrada.join(' ')}\`\n\n🎉 ${response.author} ha guanyat! La paraula era \`${palabra}\`.`)
+                .setImage(imagenesAhorcado[intentos])
                 .setFields([]);
             collector.stop();
 
@@ -317,6 +316,7 @@ async function iniciarPartida(message, jugadorRetado, tema) {
             );
         } else if (intentos === 0) {
             embed.setDescription(`Tema: ${tema}\n\nParaula: \`${palabraMostrada.join(' ')}\`\n\n😢 Tots dos han perdut. La paraula era \`${palabra}\`.`)
+                .setImage(imagenesAhorcado[intentos])
                 .setFields([]);
             collector.stop();
 
@@ -363,9 +363,9 @@ async function iniciarPartida(message, jugadorRetado, tema) {
             );
         } else {
             embed.setDescription(`Tema: ${tema}\n\nParaula: \`${palabraMostrada.join(' ')}\`\n\nIntents restants: ${intentos}`)
+                .setImage(imagenesAhorcado[intentos])
                 .setFields(
-                    { name: 'Lletres intentades', value: letrasIntentadas.join(', ') },
-                    { name: 'Penjat', value: dibujosAhorcado[intentos] }
+                    { name: 'Lletres intentades', value: letrasIntentadas.join(', ') }
                 );
             turno = 1 - turno;
         }
@@ -377,6 +377,7 @@ async function iniciarPartida(message, jugadorRetado, tema) {
     collector.on('end', collected => {
         if (collected.size === 0) {
             embed.setDescription(`Tema: ${tema}\n\nParaula: \`${palabraMostrada.join(' ')}\`\n\n⏰ Temps esgotat! La paraula era \`${palabra}\`.`)
+                .setImage(imagenesAhorcado[0])
                 .setFields([]);
             mensajeJuego.edit({ embeds: [embed] });
         }

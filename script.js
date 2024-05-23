@@ -48,6 +48,12 @@ document.querySelectorAll(".navegacion a").forEach(link => {
 
         if (link.id === 'registres') {
             obtenerEstadisticas();
+        } else if (link.id === 'logs-partides') {
+            obtenerLogsPartides();
+        } else if (link.id === 'estadistiques') {
+            obtenerEstadistiques();
+        } else if (link.id === 'comandaments') {
+            obtenerComandos();
         }
     });
 });
@@ -66,13 +72,6 @@ function setActiveMenuItem(activeItem) {
     activeItem.classList.add("active");
 }
 
-// Mostrar la sección de bienvenida por defecto y cargar comandos
-document.addEventListener("DOMContentLoaded", () => {
-    mostrarSeccion("inici-section");
-    obtenerComandos();
-});
-
-// Obtener y mostrar comandos automáticamente
 async function obtenerComandos() {
     const commandList = document.getElementById('commandList');
     commandList.innerHTML = ''; // Limpiar la lista
@@ -90,27 +89,96 @@ async function obtenerComandos() {
     }
 }
 
-// Obtener y mostrar estadísticas del usuario
-async function obtenerEstadisticas() {
-    const statsContainer = document.getElementById('statsContainer');
-    statsContainer.innerHTML = '<p>Loading stats...</p>'; // Mostrar mensaje de carga
+async function obtenerLogsPartides() {
+    const logsContainer = document.getElementById('logsContainer');
+    logsContainer.innerHTML = '<p>Loading logs...</p>'; // Mostrar mensaje de carga
 
-    const userId = 'some-user-id'; // Reemplaza esto con el ID del usuario actual
     try {
-        const stats = await window.electron.getStats(userId);
-        if (!stats) {
-            statsContainer.innerHTML = '<p>No hay estadísticas registradas.</p>';
+        const logs = await window.electron.getLogsPartides();
+        if (logs.length === 0) {
+            logsContainer.innerHTML = '<p>No hay registros disponibles.</p>';
             return;
         }
 
-        statsContainer.innerHTML = `
-            <div class="stats-item"><strong>Jocs Jugats:</strong> ${stats.games_played || 0}</div>
-            <div class="stats-item"><strong>Jocs Guanyats:</strong> ${stats.games_won || 0}</div>
-            <div class="stats-item"><strong>Jocs Perduts:</strong> ${stats.games_lost || 0}</div>
-            <div class="stats-item"><strong>Lletres Correctes:</strong> ${stats.correct_letters || 0}</div>
-            <div class="stats-item"><strong>Lletres Incorrectes:</strong> ${stats.incorrect_letters || 0}</div>
+        const table = document.createElement('table');
+        table.innerHTML = `
+            <tr>
+                <th>ID</th>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Tema</th>
+                <th>Palabra</th>
+                <th>Resultado</th>
+                <th>Fecha</th>
+            </tr>
         `;
+
+        logs.forEach(log => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${log.id}</td>
+                <td>${log.user_id}</td>
+                <td>${log.username}</td>
+                <td>${log.tema}</td>
+                <td>${log.palabra}</td>
+                <td>${log.resultado}</td>
+                <td>${log.fecha}</td>
+            `;
+            table.appendChild(row);
+        });
+
+        logsContainer.innerHTML = '';
+        logsContainer.appendChild(table);
+    } catch (error) {
+        logsContainer.innerHTML = `<p>Error al obtener registros: ${error}</p>`;
+    }
+}
+
+async function obtenerEstadistiques() {
+    const statsContainer = document.getElementById('statsContainer');
+    statsContainer.innerHTML = '<p>Loading stats...</p>'; // Mostrar mensaje de carga
+
+    try {
+        const stats = await window.electron.getEstadistiques();
+        if (stats.length === 0) {
+            statsContainer.innerHTML = '<p>No hay estadísticas disponibles.</p>';
+            return;
+        }
+
+        const table = document.createElement('table');
+        table.innerHTML = `
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Jocs Jugats</th>
+                <th>Jocs Guanyats</th>
+                <th>Jocs Perduts</th>
+                <th>Lletres correctes</th>
+                <th>Lletres incorrectes</th>
+            </tr>
+        `;
+
+        stats.forEach(stat => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${stat.user_id}</td>
+                <td>${stat.username}</td>
+                <td>${stat.games_played}</td>
+                <td>${stat.games_won}</td>
+                <td>${stat.games_lost}</td>
+                <td>${stat.correct_letters}</td>
+                <td>${stat.incorrect_letters}</td>
+            `;
+            table.appendChild(row);
+        });
+
+        statsContainer.innerHTML = '';
+        statsContainer.appendChild(table);
     } catch (error) {
         statsContainer.innerHTML = `<p>Error al obtener estadísticas: ${error}</p>`;
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    obtenerComandos();
+});

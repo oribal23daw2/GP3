@@ -51,9 +51,23 @@
 body{
     height: 100vh;
     width: 100%;
-    background-color: darkcyan;
+    overflow: hidden;
+    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
 }
 
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
 /*-----------------Menu*/
 .menu{
     position: fixed;
@@ -328,7 +342,6 @@ main.min-main{
     }
     
 }
-/* ... tu CSS existente ... */
 
 .oculto {
     display: none;
@@ -362,15 +375,15 @@ main > section:not(.oculto) {
 }
 
 .command-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: #f0f0f0;
     margin: 10px 0;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     transition: background-color 0.3s;
 }
 
@@ -378,20 +391,90 @@ main > section:not(.oculto) {
     background-color: #e0e0e0;
 }
 
-.stats-item {
+.command-name {
+    flex-grow: 1;
+}
+
+.command-edit {
+    flex-grow: 1;
+    border: none;
     background-color: #f0f0f0;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     font-size: 16px;
-    transition: background-color 0.3s;
+    display: none;
 }
 
-.stats-item strong {
-    margin-right: 10px;
+.edit-icon {
+    cursor: pointer;
+    margin-left: 10px;
 }
 
-.stats-item:hover {
-    background-color: #e0e0e0;
+/* Ajustar el tamaño del ícono de lápiz */
+.edit-icon {
+    font-size: 20px;
+    color: #333;
+}
+
+.edit-icon:hover {
+    color: #000;
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 18px;
+    text-align: left;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #000000;
+}
+
+table th {
+    background-color: #000000;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #000000;
+}
+
+.info-content {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.info-content h3 {
+    margin-top: 20px;
+    color: #333;
+}
+
+.info-content p,
+.info-content ul,
+.info-content ol {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.info-content ul {
+    padding-left: 20px;
+}
+
+.info-content li {
+    margin-bottom: 10px;
+}
+
+.info-content a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.info-content a:hover {
+    text-decoration: underline;
 }
