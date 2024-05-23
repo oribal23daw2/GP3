@@ -51,8 +51,8 @@
 body{
     height: 100vh;
     width: 100%;
-    overflow: hidden;
-    background: linear-gradient(45deg, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+    overflow:auto;
+    background: linear-gradient(45deg, #9fe7ff, #87cefa, #b0e0e6, #9fe7ff);
     background-size: 400% 400%;
     animation: gradientAnimation 10s ease infinite;
 }
